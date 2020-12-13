@@ -41,12 +41,16 @@ const ROUTES_DEF = {
       path: '/viewer',
       component: StandaloneRouting,
     },
+    // list: {
+    //   path: ['/studylist', '/'],
+    //   component: StudyListRouting,
+    //   condition: appConfig => {
+    //     return appConfig.showStudyList;
+    //   },
+    // },
     list: {
-      path: ['/studylist', '/'],
-      component: StudyListRouting,
-      condition: appConfig => {
-        return appConfig.showStudyList;
-      },
+      path: ['/', '/:studyInstanceUIDs'],
+      component: ViewerRouting,
     },
     local: {
       path: '/local',

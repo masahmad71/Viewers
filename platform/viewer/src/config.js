@@ -43,11 +43,15 @@ export function setConfiguration(appConfig) {
   };
 
   cornerstoneWADOImageLoader.configure({
-    beforeSend: function(xhr) {
+    beforeSend: function (xhr) {
       const headers = OHIF.DICOMWeb.getAuthorizationHeader();
 
-      if (headers.Authorization) {
-        xhr.setRequestHeader('Authorization', headers.Authorization);
+      if (appConfig.authToken) {
+        xhr.setRequestHeader('Authorization', appConfig.authToken);
+      } else {
+        if (headers.Authorization) {
+          xhr.setRequestHeader('Authorization', headers.Authorization);
+        }
       }
     },
     errorInterceptor: error => {
